@@ -1,0 +1,225 @@
+# `.clinerules` — Multi-Agent Coding System
+
+<!-- PROTECTED: START - Overview and Protected Sections -->
+## Overview and Protected Sections
+
+This `.clinerules` file defines how a Cline-based multi-agent system operates in **Plan** and **Act** modes.  
+It is **strongly recommended** to keep these sections in one file for clarity, so that Cline recognizes the entire rule set without fragmentation. If you prefer to split each section into separate files, be aware that Cline must reference and merge them accurately—potentially increasing complexity. In most cases, a single `.clinerules` is simpler and avoids parsing errors.
+
+**Protected Sections** below **must not** be modified without **explicit user authorization**:
+
+- **Mode Descriptions**  
+- **Document Conventions**  
+- **Workflow Guidelines**  
+- **Governance of Self-Modification and Review Phase**  
+- **Error Handling and Recovery**  
+- **Logging and Auditing**  
+- **User Oversight and Overrides**  
+- **Changelog**
+
+Edits to these sections require **explicit user approval** or a major version update specifically acknowledged in "Next Steps and Action Items."
+
+Non-protected sections—such as "Background and Motivation," "Key Challenges and Analysis," "Current Status / Progress Tracking," "Next Steps and Action Items," "Act's Feedback or Assistance Requests," and "Lessons Learned"—are **safe** to edit, expand, or adapt as part of routine iteration.
+<!-- PROTECTED: END - Overview and Protected Sections -->
+
+
+<!-- PROTECTED: START - Mode Descriptions -->
+## Mode Descriptions
+
+1. **Plan**
+
+    - **Responsibilities:**  
+      - Perform high-level analysis, task decomposition, success criteria definition, progress evaluation, strategic decision-making.  
+      - May propose modifications to `.clinerules` (protected sections only with user permission).  
+      - Maintains a separate **`PROJECT_IMPLEMENTATION_PLAN.md`** file (or similar name) holding **all** detailed project tracking, planning, design outlines, and itemized steps.
+
+    - **Actions:**  
+      - **Standard Analysis:** `cline analyze`  
+      - **Targeted Analysis:** `cline analyze --focus <section_name>`  
+      - **File-Specific Analysis:** `cline analyze --file <path/to/file>`  
+      - **Rules Modification:** If `.clinerules` changes affect protected sections, must request user approval.  
+      - **Project Implementation Plan Updates:**  
+        - Whenever a new or updated plan is generated, store it in `PROJECT_IMPLEMENTATION_PLAN.md`.  
+        - Include all tasks, design details, and statuses in a checkable list (e.g., Markdown checkboxes).  
+        - Do not overwrite previous entries; **append** new information, check off completed tasks, and note any relevant commentary inline.
+
+2. **Act**
+
+    - **Responsibilities:**  
+      - Execute tasks assigned by Plan (writing or modifying code, running tests, performing shell commands, etc.).  
+      - Update progress in `.clinerules` (safe areas) as well as in `PROJECT_IMPLEMENTATION_PLAN.md`.  
+
+    - **Actions:**  
+      - **Code Modification:** Directly modify project files except protected `.clinerules` sections.  
+      - **Shell Command Execution:** `cline exec -- <command>`  
+      - **Cline Tool Usage:** Use built-in commands (analyze, search, browse, etc.) or propose new tools with `cline extend`.  
+      - **Feedback:**  
+        - Update "Current Status / Progress Tracking" in `.clinerules` with achievements, blockers, or relevant notes.  
+        - Mark completed tasks in `PROJECT_IMPLEMENTATION_PLAN.md` by checking them off or adding commentary.  
+        - If new analysis is needed, trigger Plan mode.
+<!-- PROTECTED: END - Mode Descriptions -->
+
+
+<!-- PROTECTED: START - Document Conventions -->
+## Document Conventions (CRITICAL: Must be followed strictly)
+
+- **Multi-Agent Scratchpad:**  
+  - The central area for Plan ↔ Act communication. *Do not alter the established section headers.*  
+
+- **Section Roles:**  
+  - "Background and Motivation," "Key Challenges and Analysis": Primarily maintained by Plan. Act may append relevant observations.  
+  - "Current Status / Progress Tracking," "Act's Feedback or Assistance Requests": Primarily maintained by Act. Plan may add clarifications or comments.  
+  - "Next Steps and Action Items": Written **exclusively** by Plan.  
+  - "Implementation Plan & Stage Details" (if used in `.clinerules`): May be edited by both Plan and Act, but major structural changes are still subject to user approval if they affect protected areas.  
+
+- **Strict Markdown Formatting:**  
+  - Helps ensure clarity and prevents parsing errors.  
+
+- **Project Implementation Plan (`PROJECT_IMPLEMENTATION_PLAN.md`):**  
+  - This separate file holds **all** project-specific tasks, design outlines, planning structure, etc.  
+  - Plan updates it with itemized tasks, checkboxes, commentary, or design notes.  
+  - Act checks off items and may add relevant commentary.  
+  - **Do not overwrite** or purge old content; always **append** new updates.  
+
+- **Changelog:**  
+  - Every edit to `.clinerules` itself—especially if it touches protected sections—must be recorded in the "Changelog" section at the bottom of this file.
+
+- **Lessons Learned:**  
+  - Document successes, mistakes, strategies, or new insights gleaned from the process.
+<!-- PROTECTED: END - Document Conventions -->
+
+
+<!-- PROTECTED: START - Workflow Guidelines -->
+## Workflow Guidelines
+
+1. **Initialization:**  
+   - Plan updates "Background and Motivation" in `.clinerules` with context.  
+   - Plan creates (or appends to) `PROJECT_IMPLEMENTATION_PLAN.md` containing the **full** itemized plan for the project.  
+
+2. **Planning Cycle:**  
+   - Plan uses `cline analyze` commands to refine tasks.  
+   - **All** changes or expansions to the project plan go into `PROJECT_IMPLEMENTATION_PLAN.md`.  
+   - Optionally, Plan can keep a high-level summary in `.clinerules` under "Implementation Plan & Stage Details," but the **detailed** tasks must be in `PROJECT_IMPLEMENTATION_PLAN.md`.  
+
+3. **Action Cycle:**  
+   - Act carries out tasks from "Next Steps and Action Items" and consults `PROJECT_IMPLEMENTATION_PLAN.md` for details.  
+   - Act checks off completed tasks and appends commentary where helpful.  
+   - Act updates "Current Status / Progress Tracking" or "Act's Feedback or Assistance Requests" in `.clinerules`, ensuring the project's progress is always visible.
+
+4. **Iteration:**  
+   - The Plan-Act cycle repeats until the project is complete or significantly changes direction.  
+   - Agents must not erase or overwrite critical plan data; they must append or check off items.  
+
+5. **Self-Modification:**  
+   - Plan can propose changes to `.clinerules`. If changes affect any **protected** sections, explicit user approval is required.  
+   - All changes must be documented in the Changelog.
+
+6. **Tool Extension:**  
+   - If new tools are needed, propose them via `cline extend`.  
+
+7. **Critical Decisions:**  
+   - Before major or irreversible actions, confirm with Plan or the user.
+<!-- PROTECTED: END - Workflow Guidelines -->
+
+
+<!-- PROTECTED: START - Governance of Self-Modification and Review Phase -->
+## Governance of Self-Modification and Review Phase
+
+1. **Proposal Stage:**  
+   - Plan drafts `.clinerules` changes. If it affects protected sections, highlight the diff for user sign-off.  
+
+2. **Review Stage:**  
+   - Act reviews the proposed changes; if protected areas are touched, user authorization is mandatory.  
+
+3. **Apply Stage:**  
+   - If approved, Plan runs `cline apply`.  
+   - Document the final changes in the "Changelog" below.  
+
+4. **Rollback Option:**  
+   - Should major issues arise, revert to a prior stable version of `.clinerules` and record the rollback event.
+<!-- PROTECTED: END - Governance of Self-Modification and Review Phase -->
+
+
+<!-- PROTECTED: START - Error Handling and Recovery -->
+## Error Handling and Recovery
+
+- **Error Categorization:**  
+  - **Critical Errors:** Demand immediate rollback or escalate to user.  
+  - **Warnings:** Possibly try a fallback approach or consult Plan.  
+  - **Informational Notices:** Log only, no urgent action required.
+
+- **Fallback Strategies:**  
+  - If one approach fails, try a different tool or path.  
+
+- **Rollback Mechanism:**  
+  - Use version control, snapshots, or commits to revert to a safe state if a Critical Error occurs.
+<!-- PROTECTED: END - Error Handling and Recovery -->
+
+
+<!-- PROTECTED: START - Logging and Auditing -->
+## Logging and Auditing
+
+- **Log Format:**  
+  - Timestamped, Markdown-based logs capturing agent role, action, outcome.  
+
+- **Storage:**  
+  - Store logs in a persistent directory (e.g., `logs/`).  
+  - If a separate logging approach is used, it must be recognized by both Plan and Act.
+
+- **Audit Trail:**  
+  - Any `.clinerules` change must show old vs. new references. This is especially crucial for protected sections.
+<!-- PROTECTED: END - Logging and Auditing -->
+
+
+<!-- PROTECTED: START - User Oversight and Overrides -->
+## User Oversight and Overrides
+
+- **Approval Thresholds:**  
+  - Major or destructive changes—especially in protected sections—always require explicit user consent.  
+
+- **Manual Override / Kill Switch:**  
+  - The user can halt or override tasks at any time.  
+  - The system must log these events as high-level in the logs or in "Act's Feedback."
+
+- **Prompting Mechanism:**  
+  - Summarize relevant changes for user decision. Wait for approval if they affect protected sections or involve irreversible actions.
+<!-- PROTECTED: END - User Oversight and Overrides -->
+
+
+## Background and Motivation
+
+The Pharmacy Data Dashboard project is a fully functional production-grade solution designed to automatically ingest data from your pharmacy management software on a daily basis. It processes this data to compute and display robust RX metrics, prescriber metrics, and drug statistics via elegant, dynamic visualizations such as charts and graphs. The system follows a modular microservice architecture leveraging a React front-end, a Node.js API gateway, and Python/Flask integration services deployed on Google Cloud Platform. Detailed architectural designs, phase-based task breakdowns, and API integration specifics are documented in the implementation plan at:
+
+  **docs/agentic_team_notes/detailed_implementation_plan.md**
+
+## Key Challenges and Analysis
+*(Safe to edit. Plan typically manages this.)*
+
+## Current Status / Progress Tracking
+*(Safe to edit. Act typically manages this. Add or update as needed.)*
+
+## Next Steps and Action Items
+- [ ] Review the Detailed Implementation Plan in **docs/agentic_team_notes/detailed_implementation_plan.md**
+- [ ] Validate production API configurations per the API_Integrator documentation.
+- [ ] Implement persistent storage and robust error handling.
+- [ ] Integrate real-time data ingestion (e.g., via Cloud Scheduler) and dynamic dashboard visualization.
+- [ ] Proceed with iterative development as per the outlined phases.
+
+## Act's Feedback or Assistance Requests
+*(Safe to edit. Act shares blockers, requests for help, or updates here.)*
+
+## Lessons Learned
+This project builds upon the legacy Dotti system while incorporating extensive insights from the comprehensive API_Integrator documentation. Key takeaways include:
+- The necessity of a modular, scalable architecture for maintainability.
+- The value of robust, daily data ingestion combined with precise metric computation.
+- The importance of production-grade API integration with secure secret management and real-time updates.
+- Continuous testing, monitoring, and iterative refinement are essential for delivering an elegant user experience.
+
+<!-- PROTECTED: START - Changelog -->
+## Changelog
+
+- **[Date: 2024-01-09] [Agent: Plan]**  
+  **Description:** Initial baseline `.clinerules` for Pharmacy Data Dashboard project.
+- **[Date: 2024-XX-XX] [Agent: Update]**  
+  **Description:** Updated non-protected sections with comprehensive project information, referencing the detailed implementation plan (docs/agentic_team_notes/detailed_implementation_plan.md) and API_Integrator production integration details.
+<!-- PROTECTED: END - Changelog -->

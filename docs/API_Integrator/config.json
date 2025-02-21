@@ -1,0 +1,6 @@
+{
+  "base_url": "https://demo.drxapp.com/external_api/v1",
+  "api_key": "DRX1754cdd3b922426998649af0b0fee50b",
+  "timeout": 30,
+  "retry_attempts": 3
+}
